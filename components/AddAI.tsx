@@ -20,8 +20,8 @@ import {
   Box,
   Checkbox
 } from '@chakra-ui/react';
-import { Cluster } from '../../backend/src/cluster/entities/cluster.entity';
 import { v4 as uuidv4 } from 'uuid';
+import { Cluster } from '@/types';
 
 interface DataItem {
   id: number;
