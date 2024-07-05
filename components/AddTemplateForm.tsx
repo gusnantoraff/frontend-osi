@@ -93,7 +93,7 @@ const AddTemplateForm: React.FC<AddTemplateFormProps> = (props) => {
   useEffect(() => {
     const fetchTemplateDetails = async () => {
       try {
-        const response = await fetch(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/${templateId}`);
+        const response = await fetch(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates/${templateId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch template details');
         }
