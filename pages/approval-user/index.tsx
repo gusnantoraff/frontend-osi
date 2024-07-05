@@ -1,11 +1,9 @@
-import DeleteButton from '@/components/DeleteButton';
 import SearchInput from '@/components/SearchInput';
 import SkeletonComponent from '@/components/Skeleton';
 import Table from '@/components/Table';
 import DashboardLayout from '@/layouts/Dashboard.layout';
 import { Dictionary } from '@/types/DictionaryType';
-import { Button, Flex, HStack, Tab, TabList, TabPanel, TabPanels, Tabs, Tag, Text } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import { Button, Flex, HStack, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 // Data palsu sebagai contoh
@@ -28,19 +26,17 @@ const fakeData = {
 };
 
 export default function UserManagement({}) {
-  const router = useRouter();
   const [data, setData] = useState(fakeData);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false); 
-  const [pagination, setPagination] = useState({ page: 1, limit: 10 });
-
-  const deleteUser = async (userId: string) => {
-    try {
-      console.log(`Menghapus pengguna dengan ID: ${userId}`);
-    } catch (error) {
-      console.error('Error deleting user:', error);
-    }
-  };
+  const [pagination, setPagination] = useState({
+    page: 1,
+    take: 10,
+    itemCount: 0,
+    pageCount: 0,
+    hasPreviousPage: false,
+    hasNextPage: false,
+  });
 
   useEffect(() => {
     async function fetchData() {
@@ -61,7 +57,7 @@ export default function UserManagement({}) {
   
   const columns: Dictionary = {
     SUPER_ADMIN: [
-      { name: '#', selector: (row: any, idx: number) => String(idx + 1), width: 'w-[10%]' },
+      { name: '#', selector: (idx: number) => String(idx + 1), width: 'w-[10%]' },
       { name: 'Name', selector: (row: any) => row.name, width: 'w-[20%]' },
       { name: 'Email', selector: (row: any) => row.email, width: 'w-[20%]' },
       { name: 'Cluster', selector: (row: any) => row.cluster, width: 'w-[20%]' }, 
@@ -86,6 +82,13 @@ export default function UserManagement({}) {
     console.log(`Menolak pengguna dengan ID: ${userId}`);
   };
 
+  const handlePageChange = (page: number) => {
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      page,
+    }));
+  };
+
   return (
     <DashboardLayout>
       <div className='bg-white rounded-lg p-6'>
@@ -108,7 +111,7 @@ export default function UserManagement({}) {
               <TabPanels mt='8px'>
                 {data.ListUsers.count.map((item: any, idx: number) => (
                   <TabPanel key={idx} p={0}>
-                    <Table loading={loading} columns={columns[item.role]} data={data.ListUsers.listUser.users} pagination={pagination} setPagination={setPagination} />
+                    <Table columns={columns[item.role]} data={data.ListUsers.listUser.users} pagination={pagination} onPageChange={handlePageChange} />
                   </TabPanel>
                 ))}
               </TabPanels>

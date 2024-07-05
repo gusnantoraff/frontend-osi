@@ -12,7 +12,6 @@ import { Text } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import dayjs from 'dayjs';
 import { ChartType } from '@/types/chart.type';
-import { DetailControllerResponse } from '@/hooks/useController';
 import { MqttPayloadType } from '@/types';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
