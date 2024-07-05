@@ -4,7 +4,7 @@ import AddModal from '@/components/AddModal';
 import FormItem from '@/components/FormItem';
 import SearchInput from '@/components/SearchInput';
 import FilterDropdown from '@/components/FilterDropdown';
-import { Badge, Button, Flex, HStack, Text, Tabs, TabList, Tab, TabPanels, TabPanel, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter } from '@chakra-ui/react';
+import { Badge, Button, Flex, HStack, Text, Tabs, TabList, Tab, TabPanels, TabPanel, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 import AddTemplateForm from '@/components/AddTemplateForm';
 import AddAI from '@/components/AddAI';
 import axios from 'axios';
@@ -12,22 +12,6 @@ import Table from '@/components/Table';
 import DeleteButton from '@/components/DeleteButton';
 import TemplateDetail from '@/components/TemplateDetail';
 import Link from '@/components/Link';
-
-interface PaginationState {
-  page: number;
-  limit: number;
-}
-
-type ListControllerInput = {
-  page: number;
-  limit: number;
-  filter?: {
-    clusterId?: string;
-  };
-  search?: {
-    keyword?: string;
-  };
-};
 
 type AddControllerValues = {
   cluster_id: string;
@@ -50,17 +34,17 @@ const ControllerPage: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
   const [error, setError] = useState<any>(null);
   const [templates, setTemplates] = useState<any[]>([]);
-  const [activeTab, setActiveTab] = useState(0);
   const [selectedTemplateId, setSelectedTemplateId] = useState<string | undefined>(undefined);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
 
   useEffect(() => {
     fetchControllers();
-  }, [pagination.page]);
+  }, [pagination.page, searchKeyword]);
 
   useEffect(() => {
     fetchTemplates();
-  }, [pagination.page]);
+  }, [pagination.page, searchKeyword]);
 
   const fetchControllers = async () => {
     try {
@@ -68,6 +52,7 @@ const ControllerPage: React.FC = () => {
         params: {
           page: pagination.page,
           take: pagination.take,
+          search: searchKeyword,
         },
       });
       const { data, meta } = response.data;
@@ -88,6 +73,7 @@ const ControllerPage: React.FC = () => {
         params: {
           page: pagination.page,
           take: pagination.take,
+          search: searchKeyword,
         },
       });
       const { data, meta } = response.data;
@@ -215,16 +201,6 @@ const ControllerPage: React.FC = () => {
     );
   };
 
-
-  const handleTabChange = (index: number) => {
-    setActiveTab(index);
-    if (index === 0) {
-      fetchControllers();
-    } else if (index === 1) {
-      fetchTemplates();
-    }
-  };
-
   const handleAddTemplateOrAI = async () => {
     setIsAddModalOpen(false);
     fetchTemplates();
@@ -235,6 +211,11 @@ const ControllerPage: React.FC = () => {
       ...prevPagination,
       page,
     }));
+  };
+
+  const handleSearch = (keyword: string) => {
+    setSearchKeyword(keyword.toLowerCase());
+    setPagination(prev => ({ ...prev, page: 1 }));
   };
 
 
@@ -398,7 +379,7 @@ const ControllerPage: React.FC = () => {
       </Modal>
 
       <div className='bg-white rounded-lg p-6'>
-        <Tabs isLazy onChange={handleTabChange}>
+        <Tabs isLazy>
           <TabList>
             <Tab>Controllers</Tab>
             <Tab>Templates</Tab>
@@ -407,7 +388,7 @@ const ControllerPage: React.FC = () => {
             <TabPanel>
               <Flex justifyContent='space-between' alignItems='center' mb='24px'>
                 <HStack spacing='1rem' w={{ base: 'full', md: '50%', lg: '60%' }}>
-                  <SearchInput placeholder='Cari Nama Controller' />
+                  <SearchInput placeholder='Cari Nama Controller' onSearch={handleSearch} />
                   <FilterDropdown modelKey='cluster_id' placeholder='Cluster' w='40%' h='3rem' bg='other.02' />
                 </HStack>
                 <Button onClick={() => setIsOpen(true)} h='3rem' variant='solid' bg='primary' color='white' _hover={{ bg: 'primary_hover' }}>
@@ -424,7 +405,7 @@ const ControllerPage: React.FC = () => {
             <TabPanel>
               <Flex justifyContent='space-between' alignItems='center' mb='24px'>
                 <HStack spacing='1rem' w={{ base: 'full', md: '50%', lg: '60%' }}>
-                  <SearchInput placeholder='Cari Nama Template' />
+                  <SearchInput placeholder='Cari Nama Template' onSearch={handleSearch}/>
                   <FilterDropdown modelKey='cluster_id' placeholder='Cluster' w='40%' h='3rem' bg='other.02' />
                 </HStack>
                 <Button onClick={() => setIsAddModalOpen(true)} h='3rem' variant='solid' bg='primary' color='white' _hover={{ bg: 'primary_hover' }}>

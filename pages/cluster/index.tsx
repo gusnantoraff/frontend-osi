@@ -43,8 +43,8 @@ const ClusterPage = () => {
     devicesCount: 0,
     owner: ''
   });
-  const [searchKeyword, setSearchKeyword] = useState('');
   const [currentUser, setCurrentUser] = useState<User>();
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -53,7 +53,7 @@ const ClusterPage = () => {
   useEffect(() => {
     fetchClusters();
     fetchCurrentUser();
-  }, [pagination.page]);
+  }, [pagination.page, searchKeyword]);
 
   const token = Cookies.get('token');
 
@@ -78,6 +78,7 @@ const ClusterPage = () => {
         params: {
           page: pagination.page,
           take: pagination.take,
+          search: searchKeyword,
         }
       });
   
@@ -153,7 +154,7 @@ const ClusterPage = () => {
   };
 
   const handleSearch = (keyword: string) => {
-    setSearchKeyword(keyword);
+    setSearchKeyword(keyword.toLowerCase());
     setPagination(prev => ({ ...prev, page: 1 }));
   };
 

@@ -70,7 +70,7 @@ const UserManagementPage = () => {
     if (id) {
       setSelectedUserId(id as string);
   }
-  }, [id, activeTab, pagination.page]);
+  }, [id, activeTab, pagination.page, searchKeyword]);
 
   const fetchCurrentUser = async () => {
     try {
@@ -102,6 +102,7 @@ const UserManagementPage = () => {
         params: {
           page: pagination.page,
           take: pagination.take,
+          search: searchKeyword,
         },
       });
       const { data, meta } = response.data;
@@ -137,6 +138,11 @@ const UserManagementPage = () => {
       ...prevPagination,
       page,
     }));
+  };
+
+  const handleSearch = (keyword: string) => {
+    setSearchKeyword(keyword.toLowerCase());
+    setPagination(prev => ({ ...prev, page: 1 }));
   };
 
   const handleAddMember = async (values: AddMemberValues) => {
@@ -186,10 +192,6 @@ const UserManagementPage = () => {
         console.error('Error deleting user:', error);
       }
     }
-  };
-
-  const handleSearch = (keyword: string) => {
-    setSearchKeyword(keyword);
   };
 
   const handleViewDetail = (user: User) => {

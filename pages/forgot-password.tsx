@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import AuthLayout from '@/layouts/Auth.layout';
 import { Button, Text } from '@chakra-ui/react';
 import FormItem from '@/components/FormItem';
@@ -8,7 +7,6 @@ import { Formik, Form } from 'formik';
 import Head from 'next/head';
 
 const ForgotPassword: React.FC = () => {
-  const router = useRouter();
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<boolean>(false);
   const [userExists, setUserExists] = useState<boolean>(false);
