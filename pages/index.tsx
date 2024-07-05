@@ -22,7 +22,7 @@ const Login: React.FC = () => {
   const handleSubmit = async ({ email, password }: { email: string; password: string }) => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:4000/login', {
+      const response = await fetch('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

@@ -18,7 +18,7 @@ import Cookies from 'js-cookie';
 export async function getServerSideProps(context: any) {
   const { id } = context.query;
 
-  const res = await fetch(`http://localhost:4000/controllers/${id}`);
+  const res = await fetch(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/controllers/${id}`);
   const data = await res.json();
 
   return {

@@ -82,7 +82,7 @@ const ClusterDropdown = ({ name, placeholder }: { name: string; placeholder: str
   useEffect(() => {
     const fetchClusters = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/clusters/all');
+        const response = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/all');
         if (Array.isArray(response.data)) {
           setData(response.data);
         } else {
@@ -138,7 +138,7 @@ const TemplateDropdown = ({ name, placeholder }: { name: string; placeholder: st
   useEffect(() => {
     const fetchTemplates = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/templates/all');
+        const response = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates/all');
         if (Array.isArray(response.data)) {
           setData(response.data);
         } else {
@@ -194,7 +194,7 @@ const UserDropdown = ({ name, placeholder }: { name: string; placeholder: string
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/users/all');
+        const response = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users/all');
         if (Array.isArray(response.data)) {
           setData(response.data);
         } else {

@@ -74,7 +74,7 @@ const AddTemplateForm: React.FC<AddTemplateFormProps> = (props) => {
   useEffect(() => {
     const fetchClustersAndInitializeData = async () => {
       try {
-        const response = await fetch('http://localhost:4000/clusters/all');
+        const response = await fetch('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/all');
         if (!response.ok) {
           throw new Error('Failed to fetch clusters');
         }
@@ -93,7 +93,7 @@ const AddTemplateForm: React.FC<AddTemplateFormProps> = (props) => {
   useEffect(() => {
     const fetchTemplateDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/template/${templateId}`);
+        const response = await fetch(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/${templateId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch template details');
         }
@@ -186,7 +186,7 @@ const AddTemplateForm: React.FC<AddTemplateFormProps> = (props) => {
     console.log('Data to be sent:', JSON.stringify(data));
 
     try {
-      const response = await fetch('http://localhost:4000/templates', {
+      const response = await fetch('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

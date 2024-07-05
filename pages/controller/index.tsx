@@ -64,7 +64,7 @@ const ControllerPage: React.FC = () => {
 
   const fetchControllers = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/controllers', {
+      const response = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/controllers', {
         params: {
           page: pagination.page,
           take: pagination.take,
@@ -84,7 +84,7 @@ const ControllerPage: React.FC = () => {
 
   const fetchTemplates = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/templates', {
+      const response = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates', {
         params: {
           page: pagination.page,
           take: pagination.take,
@@ -111,7 +111,7 @@ const ControllerPage: React.FC = () => {
 
   const fetchTemplateDetails = async (templateId: string) => {
     try {
-      const response = await axios.get(`http://localhost:4000/templates/details/${templateId}`);
+      const response = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates/details/${templateId}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching template details:', error);
@@ -122,7 +122,7 @@ const ControllerPage: React.FC = () => {
 
   const getTotalDevices = async (cluster_id: string): Promise<number> => {
     try {
-      const response = await axios.get(`http://localhost:4000/clusters/${cluster_id}`);
+      const response = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/${cluster_id}`);
       return response.data.devicesCount;
     } catch (error) {
       console.error('Error fetching device count:', error);
@@ -147,7 +147,7 @@ const ControllerPage: React.FC = () => {
     try {
       const deviceName = await getNextDeviceName(values.cluster_id);
       if (deviceName) {
-        await axios.post('http://localhost:4000/controllers', { ...values, name: deviceName });
+        await axios.post('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/controllers', { ...values, name: deviceName });
         fetchControllers();
         setSubmitLoading(false);
         setIsOpen(false);
@@ -170,7 +170,7 @@ const ControllerPage: React.FC = () => {
 
   const handleDelete = async (templateId: string) => {
     try {
-      await axios.delete(`http://localhost:4000/templates/${templateId}`);
+      await axios.delete(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates/${templateId}`);
       fetchTemplates();
     } catch (error) {
       console.error('Error deleting template:', error);

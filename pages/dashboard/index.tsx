@@ -24,7 +24,7 @@ const Dashboard = () => {
                 return;
             }
             try {
-                const userResponse = await axios.get('http://localhost:4000/users/me', {
+                const userResponse = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users/me', {
                     headers: {
                         Authorization: `Bearer ${access_token}`,
                     },

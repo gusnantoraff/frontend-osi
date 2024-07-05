@@ -64,7 +64,7 @@ const ClusterPage = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get('http://localhost:4000/users/me', config);
+      const response = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users/me', config);
       setCurrentUser(response.data);
     } catch (error) {
       console.error('Error fetching current user:', error);
@@ -74,7 +74,7 @@ const ClusterPage = () => {
 
   const fetchClusters = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/clusters/`, {
+      const response = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/`, {
         params: {
           page: pagination.page,
           take: pagination.take,
@@ -103,12 +103,12 @@ const ClusterPage = () => {
 
   const handleAddCluster = async (formData: Cluster) => {
     try {
-      const response = await axios.post(`http://localhost:4000/clusters/`,{
+      const response = await axios.post(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/`,{
         ...formData,
         owner: currentUser?.name 
       });
 
-      await axios.post(`http://localhost:4000/memberships/`, {
+      await axios.post(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/memberships/`, {
         cluster_id: response.data.cluster_id,
         user_id: currentUser?.user_id,
         is_owner: true,
@@ -130,7 +130,7 @@ const ClusterPage = () => {
   const handleDeleteCluster = async (selectedClusterId: string) => {
     if (selectedClusterId) {
       try {
-        await axios.delete(`http://localhost:4000/clusters/${selectedClusterId}`);
+        await axios.delete(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/${selectedClusterId}`);
         const updatedClusters = clusters.filter(cluster => cluster.cluster_id !== selectedClusterId);
         setClusters(updatedClusters);
       } catch (error) {

@@ -68,7 +68,7 @@ export default function UserDetail({ userId, onClose }: Props) {
     if (userId) {
       setLoading(true);
       try {
-        const userResponse = await axios.get(`http://localhost:4000/users/${userId}`);
+        const userResponse = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users/${userId}`);
         setUser(userResponse.data);
         setLoading(false);
       } catch (error) {

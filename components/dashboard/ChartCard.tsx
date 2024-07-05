@@ -67,7 +67,7 @@ export default function ChartCard({ clusterId, pagination, onPageChange }: Props
     if (clusterId) {
       setLoading(true);
       try {
-        const clusterResponse = await axios.get(`http://localhost:4000/clusters/${clusterId}`);
+        const clusterResponse = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/${clusterId}`);
         setCluster(clusterResponse.data);
         setLoading(false);
       } catch (error) {
@@ -82,7 +82,7 @@ export default function ChartCard({ clusterId, pagination, onPageChange }: Props
   const fetchController = async () => {
     if (selectedControllerId) {
       try {
-        const controllerResponse = await axios.get(`http://localhost:4000/controllers/${selectedControllerId}`);
+        const controllerResponse = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/controllers/${selectedControllerId}`);
         setController(controllerResponse.data);
         const cookiePayload = Cookies.get(`mqttPayload_${controllerResponse.data.name}`);
         if (cookiePayload) {

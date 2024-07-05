@@ -79,7 +79,7 @@ const UserManagementPage = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get('http://localhost:4000/users/me', config);
+      const response = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users/me', config);
       setCurrentUser(response.data);
     } catch (error) {
       console.error('Error fetching current user:', error);
@@ -88,14 +88,14 @@ const UserManagementPage = () => {
 
   const fetchUsers = async () => {
     try {
-      let url = 'http://localhost:4000/users';
+      let url = 'https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users';
 
       if (activeTab === 'Superadmin') {
-        url = 'http://localhost:4000/users?role=SUPER_ADMIN';
+        url = 'https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users?role=SUPER_ADMIN';
       } else if (activeTab === 'Admin') {
-        url = 'http://localhost:4000/users?role=ADMIN';
+        url = 'https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users?role=ADMIN';
       } else if (activeTab === 'User') {
-        url = 'http://localhost:4000/users?role=USER';
+        url = 'https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users?role=USER';
       }
 
       const response = await axios.get(url, {
@@ -142,7 +142,7 @@ const UserManagementPage = () => {
   const handleAddMember = async (values: AddMemberValues) => {
     setSubmitLoading(true);
     try {
-      const response = await fetch('http://localhost:4000/memberships/', {
+      const response = await fetch('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/memberships/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ const UserManagementPage = () => {
           },
         };
 
-        await axios.delete(`http://localhost:4000/users/${selectedUserId}`, config);
+        await axios.delete(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users/${selectedUserId}`, config);
         const updatedUsers = users.filter(user => user.user_id !== selectedUserId);
         setUsers(updatedUsers);
       } catch (error) {

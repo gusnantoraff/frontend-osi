@@ -15,7 +15,7 @@ const FilterDropdown = ({ onSelect, ...rest }: Props) => {
   useEffect(() => {
     const fetchClusters = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/clusters/all');
+        const response = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/all');
         if (response.data) {
           const options = response.data.map((item: any) => ({
             value: item.cluster_id,

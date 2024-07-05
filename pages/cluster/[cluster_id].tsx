@@ -42,7 +42,7 @@ const ClusterDetailPage = () => {
 
   const fetchClusterDetail = async (id: string) => {
     try {
-      const response = await axios.get(`http://localhost:4000/clusters/${id}`);
+      const response = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/${id}`);
       setCluster(response.data);
     } catch (error) {
       console.error('Error fetching cluster details:', error);
@@ -51,7 +51,7 @@ const ClusterDetailPage = () => {
 
   const fetchClusters = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/clusters/`, {
+      const response = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/`, {
         params: {
           page: pagination.page,
           take: pagination.take,

@@ -28,7 +28,7 @@ const SuperadminDashboard = () => {
 
   const fetchTotalClusters = async () => {
     try {
-      const clustersResponse = await axios.get('http://localhost:4000/clusters/all');
+      const clustersResponse = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/all');
       const clustersData = clustersResponse.data;
       setTotalClusters(clustersData.length);
     } catch (error) {
@@ -38,7 +38,7 @@ const SuperadminDashboard = () => {
 
   const fetchTotalDevices = async () => {
     try {
-      const controllersResponse = await axios.get('http://localhost:4000/controllers/all');
+      const controllersResponse = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/controllers/all');
       const controllersData = controllersResponse.data;
       setTotalDevices(controllersData.length);
     } catch (error) {
@@ -48,7 +48,7 @@ const SuperadminDashboard = () => {
 
   const fetchTemplates = async () => {
     try {
-      const templatesResponse = await axios.get('http://localhost:4000/templates/all');
+      const templatesResponse = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates/all');
       const templatesData = templatesResponse.data;
     const templatesWithCount = templatesData.map((template: Template) => ({
       ...template,
@@ -77,7 +77,7 @@ const SuperadminDashboard = () => {
 
   const fetchControllers = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/controllers', {
+      const response = await axios.get('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/controllers', {
         params: {
           page: pagination.page,
           take: pagination.take,
@@ -116,7 +116,7 @@ const SuperadminDashboard = () => {
 
   const fetchClusters = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/clusters/`, {
+      const response = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/`, {
         params: {
           page: pagination.page,
           take: pagination.take,
@@ -144,7 +144,7 @@ const SuperadminDashboard = () => {
   const handleDeleteCluster = async (selectedClusterId: string) => {
     if (selectedClusterId) {
       try {
-        await axios.delete(`http://localhost:4000/clusters/${selectedClusterId}`);
+        await axios.delete(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/${selectedClusterId}`);
         const updatedClusters = clusters.filter(cluster => cluster.cluster_id !== selectedClusterId);
         setClusters(updatedClusters);
       } catch (error) {

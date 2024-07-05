@@ -69,7 +69,7 @@ export function useQueryUser<T extends keyof UserResponse>(
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:4000/users/${method}`, {
+        const response = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users/${method}`, {
           params: config?.params || {},
         });
         setData(response.data);
@@ -122,7 +122,7 @@ export const useMutationUser = () => {
         },
       };
 
-      const response = await axios.put(`http://localhost:4000/users/${userId}`, userData, config);
+      const response = await axios.put(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users/${userId}`, userData, config);
       toast({
         title: 'User Updated',
         description: 'User has been updated successfully.',

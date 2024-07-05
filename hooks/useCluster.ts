@@ -39,7 +39,7 @@ export function useQueryCluster<T extends keyof ResponseType>(
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:4000/clusters/${method}`, config);
+        const response = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/${method}`, config);
         setData(response.data);
         setLoading(false);
       } catch (error: any) { 
@@ -73,7 +73,7 @@ export function useMutationCluster() {
 
   const updateCluster = async (clusterId: string, newData: Partial<Cluster>) => {
     try {
-      const response = await axios.put(`http://localhost:4000/clusters/${clusterId}`, newData);
+      const response = await axios.put(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/${clusterId}`, newData);
       toast({
         title: 'Cluster Updated',
         description: 'Cluster has been updated successfully.',

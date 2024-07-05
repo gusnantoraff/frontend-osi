@@ -24,7 +24,7 @@ const TemplateDetail: React.FC<Props> = ({ id }: Props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Template>(`http://localhost:4000/templates/all/${id}`);
+        const response = await axios.get<Template>(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates/all/${id}`);
         setData(response.data);
       } catch (error) {
         console.error('Error fetching template data:', error);

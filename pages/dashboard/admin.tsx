@@ -33,7 +33,7 @@ const AdminDashboard = () => {
     if (selectedCluster) {
       setLoadingController(true);
       try {
-        const clusterResponse = await axios.get(`http://localhost:4000/clusters/${selectedCluster}`);
+        const clusterResponse = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/${selectedCluster}`);
         setCluster(clusterResponse.data);
         const loc = await getLocation(clusterResponse.data.latitude, clusterResponse.data.longitude);
         setLocation(loc);
@@ -45,7 +45,7 @@ const AdminDashboard = () => {
 
     if (selectedController) {
       try {
-        const controllerResponse = await axios.get(`http://localhost:4000/controllers/${selectedController}`);
+        const controllerResponse = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/controllers/${selectedController}`);
         setController(controllerResponse.data);
         setControllerId(controllerResponse.data.controller_id);
         setLoadingController(false);

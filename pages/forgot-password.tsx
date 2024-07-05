@@ -15,7 +15,7 @@ const ForgotPassword: React.FC = () => {
 
   const checkUserExists = async (email: string) => {
     try {
-      const response = await fetch(`http://localhost:4000/users?email=${email}`);
+      const response = await fetch(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/users?email=${email}`);
       if (response.ok) {
         const data = await response.json();
         if (data.data.length > 0) {
@@ -40,7 +40,7 @@ const ForgotPassword: React.FC = () => {
     
     if (userExists) {
       try {
-        const response = await fetch('http://localhost:4000/forgot-password', {
+        const response = await fetch('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/forgot-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),

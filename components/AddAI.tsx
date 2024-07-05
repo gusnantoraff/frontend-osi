@@ -133,7 +133,7 @@ const AddAI: React.FC<AddAiProps> = (props) => {
     console.log('Submitting data:', data)
 
     try {
-      const response = await fetch('http://localhost:4000/templates', {
+      const response = await fetch('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -156,7 +156,7 @@ const AddAI: React.FC<AddAiProps> = (props) => {
   useEffect(() => {
     const fetchClustersAndInitializeData = async () => {
       try {
-        const response = await fetch('http://localhost:4000/clusters/all');
+        const response = await fetch('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/all');
         const data = await response.json();
         setClusters(data);
       } catch (error) {
@@ -181,7 +181,7 @@ const AddAI: React.FC<AddAiProps> = (props) => {
     setLoading(true);
     setRecommendations(null);
     try {
-      const response = await fetch('http://localhost:4000/generate-ai', {
+      const response = await fetch('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/generate-ai', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

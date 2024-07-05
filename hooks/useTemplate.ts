@@ -59,7 +59,7 @@ export function useQueryTemplate(
       if (!templateId) return;
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:4000/templates/${templateId}`, {
+        const response = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates/${templateId}`, {
           params: config?.params || {},
         });
         setData(response.data);
@@ -95,7 +95,7 @@ export const useMutationTemplate = () => {
 
   const updateTemplate = async (templateId: string, templateData: Partial<Template>) => {
     try {
-      const response = await axios.put(`http://localhost:4000/templates/${templateId}`, templateData);
+      const response = await axios.put(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates/${templateId}`, templateData);
       toast({
         title: 'Template Updated',
         description: 'Template has been updated successfully.',

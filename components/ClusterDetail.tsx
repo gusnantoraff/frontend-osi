@@ -181,7 +181,7 @@ const ClusterDetail = ({
     if (clusterId) {
       setLoading(true);
       try {
-        const clusterResponse = await axios.get(`http://localhost:4000/clusters/${clusterId}`);
+        const clusterResponse = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/${clusterId}`);
         setCluster(clusterResponse.data);
         setLoading(false);
       } catch (error) {

@@ -28,7 +28,7 @@ const ResetPassword: React.FC = () => {
 
     try {
       const token = router.query.token;
-      const response = await fetch(`http://localhost:4000/reset-password/${token}`, {
+      const response = await fetch(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/reset-password/${token}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ newPassword: password }),

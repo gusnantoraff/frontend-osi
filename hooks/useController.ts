@@ -45,9 +45,9 @@ export function useQueryController<T extends keyof ResponseType>(
       const fetchData = async () => {
         try {
           setLoading(true);
-          let endpoint = `http://localhost:4000/controllers/${method}`;
+          let endpoint = `https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/controllers/${method}`;
           if (method === 'GET_ONE' && id) {
-            endpoint = `http://localhost:4000/controllers/details/${id}`;
+            endpoint = `https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/controllers/details/${id}`;
           }
           const response = await axios.get(endpoint, config);
           setData(response.data);
@@ -87,7 +87,7 @@ export function useMutationController() {
 
     const updateController = async (controllerId: string, controllerData: Partial<Controller>) => {
         try {
-            const response = await axios.put(`http://localhost:4000/controllers/${controllerId}`, controllerData);
+            const response = await axios.put(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/controllers/${controllerId}`, controllerData);
             toast({
                 title: 'Controller Updated',
                 description: 'Controller has been updated successfully.',
