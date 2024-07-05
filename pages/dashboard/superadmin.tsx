@@ -297,7 +297,7 @@ const SuperadminDashboard = () => {
           </div>
           <Text fontSize='2xl' fontWeight='bold' color='blue.500'>{totalClusters}</Text>
         </Box>
-        {templates.map((template, index) => (
+        {templates.map((template) => (
           <Box
             key={template.template_id}
             p={5}

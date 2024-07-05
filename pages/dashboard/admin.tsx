@@ -9,13 +9,11 @@ import ChartCard from '@/components/dashboard/ChartCard';
 
 const AdminDashboard = () => {
   const [selectedCluster, setSelectedCluster] = useState<string | null>(null);
-  const [selectedController, setSelectedController] = useState<string | null>(null);
+  const selectedController = useState<string | null>(null);
   const [loadingLocation, setLoadingLocation] = useState<boolean>(true);
   const [location, setLocation] = useState<Location | null>(null);
-  const [loadingController, setLoadingController] = useState<boolean>(true);
   const [cluster, setCluster] = useState<any>(null);
   const [controller, setController] = useState<any>(null);
-  const [controllerId, setControllerId] = useState<any>(null);
   const [pagination, setPagination] = useState({
     page: 1,
     take: 10,
@@ -31,7 +29,6 @@ const AdminDashboard = () => {
 
   const fetchClusterAndControllerData = async () => {
     if (selectedCluster) {
-      setLoadingController(true);
       try {
         const clusterResponse = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/clusters/${selectedCluster}`);
         setCluster(clusterResponse.data);
@@ -47,8 +44,6 @@ const AdminDashboard = () => {
       try {
         const controllerResponse = await axios.get(`https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/controllers/${selectedController}`);
         setController(controllerResponse.data);
-        setControllerId(controllerResponse.data.controller_id);
-        setLoadingController(false);
       } catch (error) {
         console.error('Error fetching controller data:', error);
       }
