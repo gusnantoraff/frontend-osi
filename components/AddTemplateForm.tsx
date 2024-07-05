@@ -183,8 +183,6 @@ const AddTemplateForm: React.FC<AddTemplateFormProps> = (props) => {
       water_flow: waterflow
     };
 
-    console.log('Data to be sent:', JSON.stringify(data));
-
     try {
       const response = await fetch('https://nestjs-backend-osi-7nuvntjvuq-et.a.run.app/templates', {
         method: 'POST',
@@ -193,10 +191,6 @@ const AddTemplateForm: React.FC<AddTemplateFormProps> = (props) => {
         },
         body: JSON.stringify(data)
       });
-  
-      const result = await response.json();
-      console.log('Response from backend:', result);
-  
       if (response.ok) {
         console.log('Template added successfully');
         await props.handleAddTemplateOrAI();
